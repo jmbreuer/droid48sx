@@ -1,6 +1,6 @@
 ## 48sx CHANGELOG
 
-* 27 Aug 2023 (Version 2.42.28217712)
+* 27 Aug 2023 (Version 2.42.28217727)
   - Bug fixes and performance improvements
   - Intended to work from Android 4.4 to 13 on armeabi-v7a, arm64-v8a, x86 and x86_64 architectures
   - New name for checkpoint ZIP: Download/48sx_cp_$DATE.zip
