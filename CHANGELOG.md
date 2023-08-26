@@ -1,4 +1,10 @@
 ## 48sx CHANGELOG
+*
+* 27 Aug 2023 (Version 2.42.??)
+  - Bug fixes and performance improvements
+  - Intended to work from Android 4.4 to 13 on armeabi-v7a, arm64-v8a, x86 and x86_64 architectures
+  - New name for checkpoint ZIP: Download/48sx_cp_$DATE.zip
+  - New icon for Android above Oreo (Android 8, API >= 26)
 
 * 10 Jul 2022 (Version 2.42.27624074)
   - Fixed the "Large LCD" option in the settings, and replaced it with "HP48 LCD" to get full pixels
@@ -44,6 +50,6 @@
   - New menu: Full reset (deletes firmware/ram and deactivate ports, if calc is still hung, please uninstall/reinstall)
 
 * 7 Nov 2012 (Version 1.36)
-  - first release 
+  - first release
 
 > Olivier Sirol <czodroid@gmail.com>

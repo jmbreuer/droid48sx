@@ -30,9 +30,9 @@ println("-> gitVersionName:    " + gitVersionName)
 def buildDateTxt
 
 android {
-    compileSdkVersion 33
-    //ndkVersion '25.1.8937393'
     namespace 'org.czo.droid48sx'
+    compileSdk 33
+    //ndkVersion '25.1.8937393'
     defaultConfig {
         applicationId "org.czo.droid48sx"
         minSdkVersion 19
