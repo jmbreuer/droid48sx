@@ -704,7 +704,7 @@ public class X48 extends Activity {
         boolean ResultOK = true;
         File checkpointDir = new File(X48.config_dir, "checkpoint");
         String date = new SimpleDateFormat("yyyy-MM-dd_HH'h'mm").format(new Date(System.currentTimeMillis()));
-        String outfile = sdcard_dir + "/checkpoint_" + date + ".zip";
+        String outfile = sdcard_dir + "/48sx_cp_" + date + ".zip";
         Dlog.e("zip outfile: " + outfile);
 
         if (checkpointDir.exists()) {

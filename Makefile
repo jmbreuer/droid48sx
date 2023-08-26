@@ -2,12 +2,11 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: Jan 2012
-# Last Modified: samedi 14 mai 2022, 11:44
-# Edit Time: 4:08:28
+# Last Modified: Saturday 26 August 2023, 13:51
 # Description:
+#               Makefile for this project
 #
-# $Id: $
-#
+# Copyright: (C) 2012-2023 Olivier Sirol <czo@free.fr>
 
 release:
 	./gradlew assembleRelease
@@ -22,7 +21,7 @@ debug:
 	@echo "<- debug done!"
 
 scp: release
-	scp ./app/build/outputs/apk/release/org.czo.droid48sx-`date +%Y%m%d`-release.apk czo@ananas:/tank/data/czo/www/ananas.czo.wf/intranet/download/apk
+	scp app/build/outputs/apk/release/org.czo.droid48sx-`date +%Y%m%d`-release.apk czo@dalmore:/tank/data/czo/www/ananas.czo.wf/intranet/download/sa/software/apk
 
 re: clean debug
 	@echo "<- rebuild done!"
