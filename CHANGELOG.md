@@ -1,5 +1,5 @@
 ## 48sx CHANGELOG
-*
+
 * 27 Aug 2023 (Version 2.42.??)
   - Bug fixes and performance improvements
   - Intended to work from Android 4.4 to 13 on armeabi-v7a, arm64-v8a, x86 and x86_64 architectures
@@ -7,6 +7,8 @@
   - New icon for Android above Oreo (Android 8, API >= 26)
 
 * 10 Jul 2022 (Version 2.42.27624074)
+  - Bug fixes and performance improvements
+  - Intended to work from Android 4.4 to 12 on armeabi-v7a, arm64-v8a, x86 and x86_64 architectures
   - Fixed the "Large LCD" option in the settings, and replaced it with "HP48 LCD" to get full pixels
   - The HP48's LCD screen has now a maximum width on your device, but you can set "HP48 LCD" in the settings get full pixels
 
