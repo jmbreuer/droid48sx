@@ -747,37 +747,29 @@ public class X48 extends Activity {
         checkPrefs();
     }
 
+    private boolean accessStorage() {
+        if (Build.VERSION.SDK_INT >= 23 && Build.VERSION.SDK_INT <= 32) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+                return false;
+            } else {
+              return true;
+            }
+        } else {
+            return true;
+        }
+     }
+
     private void storageEnabledSaveZip() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        123);
-            } else saveZip();
-        } else saveZip();
+        if (accessStorage()) saveZip();
     }
 
     private void storageEnabledRestoreZip() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        123);
-            } else openZip();
-        } else openZip();
+        if (accessStorage()) openZip();
     }
 
     private void storageEnabledOpenLoad() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        123);
-            } else openLoad();
-        } else openLoad();
+        if (accessStorage()) openLoad();
     }
 
     private void openLoad() {
@@ -813,14 +805,7 @@ public class X48 extends Activity {
 
 
     private void storageEnabledOpenLoadObject() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        123);
-            } else openDocObject();
-        } else openDocObject();
+        if (accessStorage()) openDocObject();
     }
 
     private void openDocObject() {
