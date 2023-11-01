@@ -12,6 +12,4 @@ public class Dlog {
     public static final void e(String message) {
         if (BuildConfig.DEBUG && BuildConfig.BUILD_TYPE.equals("debug")) Log.e(TAG, message);
     }
-
 }
-

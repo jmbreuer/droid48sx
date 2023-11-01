@@ -92,5 +92,4 @@ public class Settings extends PreferenceActivity {
 
         return root;
     }
-
 }

@@ -1,12 +1,11 @@
 package org.czo.droid48sx;
 
+import android.content.res.AssetManager;
+import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import android.content.res.AssetManager;
-import android.widget.Toast;
 
 public class AssetUtil {
 
@@ -69,5 +68,4 @@ public class AssetUtil {
         File ram = new File(hpDir, "ram");
         return hp.exists() && hp.length() > 0 && rom.exists() && rom.length() > 0 && ram.exists() && ram.length() > 0;
     }
-
 }

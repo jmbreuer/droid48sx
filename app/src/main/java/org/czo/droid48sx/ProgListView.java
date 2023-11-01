@@ -2,14 +2,6 @@ package org.czo.droid48sx;
 
 import static org.czo.droid48sx.X48.sdcard_dir;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -24,7 +17,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.util.TypedValue;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ProgListView extends ListActivity {
 
@@ -48,8 +47,8 @@ public class ProgListView extends ListActivity {
         // go to the root directory
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //String last_dir = sp.getString("last_dir", "/storage/emulated/0/Download");
-        //String last_dir = sp.getString("last_dir", "/sdcard");
+        // String last_dir = sp.getString("last_dir", "/storage/emulated/0/Download");
+        // String last_dir = sp.getString("last_dir", "/sdcard");
         String last_dir = sp.getString("last_dir", sdcard_dir);
 
         Dlog.e("===================== ProgListView: " + last_dir);
@@ -97,7 +96,7 @@ public class ProgListView extends ListActivity {
         final Set<String> sortedfolder = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
 
         if (files != null) {
-            //Arrays.sort(files);
+            // Arrays.sort(files);
             for (final File file : files) {
                 final String name = file.getAbsolutePath();
 
@@ -116,7 +115,6 @@ public class ProgListView extends ListActivity {
         final Context context = this;
 
         ArrayAdapter<String> filenamesAdapter = new ArrayAdapter<String>(this, R.layout.file_row, this.currentFiles) {
-
             @Override
             public View getView(final int position, final View convertView, final ViewGroup parent) {
                 return new IconifiedTextLayout(context, getItem(position), position);
@@ -141,7 +139,6 @@ public class ProgListView extends ListActivity {
             // create view for the directory name
             final TextView textView = new TextView(context);
 
-
             if (position == 0 && PARENT_DIR.equals(path)) {
                 imageView.setImageResource(R.drawable.ic_action_folder);
                 imageView.setColorFilter(0x77ffffff);
@@ -155,18 +152,18 @@ public class ProgListView extends ListActivity {
                     imageView.setImageResource(R.drawable.ic_action_file);
                     imageView.setColorFilter(0x77ffffff);
                     String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(file.lastModified()));
-                    String size = file.length()/1024 + "KB";
+                    String size = file.length() / 1024 + "KB";
                     textView.setText(file.getName() + " [ " + date + ", " + size + " ]");
                 }
             }
 
-            int p = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+            int p = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
             // imageView.setPadding(p,p,p,p);
 
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             // setMargins (int left, int top, int right, int bottom)
             layoutParams.setMargins(p, p, p, p);
 
@@ -176,5 +173,4 @@ public class ProgListView extends ListActivity {
             addView(textView, layoutParams);
         }
     }
-
 }
