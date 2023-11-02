@@ -49,12 +49,14 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <!-- If your app doesn't need to access media files that other apps created,
-     set the "maxSdkVersion" attribute to "28" instead. -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="29" />
+    <!-- If your app doesn't need to access media files that other apps created, set the "maxSdkVersion" attribute to "28" instead. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+
+
+    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" /> -->
+
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+
 
 </manifest>
