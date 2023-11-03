@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
+<!--
+android:requestLegacyExternalStorage="true"
+-->
+
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
         android:largeHeap="true"
-        tools:ignore="GoogleAppIndexingWarning"
         android:requestLegacyExternalStorage="true"
+        tools:ignore="GoogleAppIndexingWarning"
         android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
 
         <activity
@@ -49,14 +53,19 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <!-- If your app doesn't need to access media files that other apps created, set the "maxSdkVersion" attribute to "28" instead. -->
+    <!--
+    If your app doesn't need to access media files that other apps created,
+    set the "maxSdkVersion" attribute to "28" instead.
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+    -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
-    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" /> -->
-
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
-
+    <!--
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+     -->
 
 </manifest>
