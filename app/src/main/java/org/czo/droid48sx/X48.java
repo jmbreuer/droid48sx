@@ -732,34 +732,41 @@ public class X48 extends Activity {
     private boolean accessStorage() {
         boolean ResultAcc = true;
 
-        if (Build.VERSION.SDK_INT >= 23 && Build.VERSION.SDK_INT <= 29) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
-                Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
-                ResultAcc = false;
-            } else {
-                ResultAcc = true;
+        try {
+            if (Build.VERSION.SDK_INT >= 23 && Build.VERSION.SDK_INT <= 29) {
+                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+                    Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
+                    ResultAcc = false;
+                } else {
+                    ResultAcc = true;
+                }
             }
-        }
+            /*
+            if (Build.VERSION.SDK_INT >= 30 && Build.VERSION.SDK_INT <= 32) {
+                if (checkSelfPermission(Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_MEDIA_LOCATION}, 123);
+                    Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
+                    ResultAcc = false;
+                } else {
+                    ResultAcc = true;
+                }
+            }
+            */
+            if (Build.VERSION.SDK_INT >= 33) {
+                if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_DENIED) {
+                    requestPermissions(new String[] {Manifest.permission.READ_MEDIA_IMAGES}, 123);
+                    Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
+                    ResultAcc = false;
+                } else {
+                    ResultAcc = true;
+                }
+            }
 
-        if (Build.VERSION.SDK_INT >= 30 && Build.VERSION.SDK_INT <= 32) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[] {Manifest.permission.ACCESS_MEDIA_LOCATION}, 123);
-                Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
-                ResultAcc = false;
-            } else {
-                ResultAcc = true;
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= 33) {
-            if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions(new String[] {Manifest.permission.READ_MEDIA_IMAGES}, 123);
-                Toast.makeText(getApplicationContext(), "Please re-run again if you accepted the permissions", Toast.LENGTH_LONG).show();
-                ResultAcc = false;
-            } else {
-                ResultAcc = true;
-            }
+        } catch (Throwable e) {
+            Dlog.e("Error: " + e.getMessage());
+            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            ResultAcc = false;
         }
 
         return ResultAcc;

@@ -173,7 +173,8 @@ serial_init()
         }
 #elif defined(LINUX)
       /* Unix98 PTY (Preferred) */
-      if ((wire_fd = open("/dev/ptmx", O_RDWR | O_NONBLOCK, 0666)) >= 0)
+      /* android: O_CREAT ????, but not used! */
+      if ((wire_fd = open("/dev/ptmx", O_CREAT | O_RDWR | O_NONBLOCK, 0666)) >= 0)
         {
           grantpt(wire_fd);
           unlockpt(wire_fd);
@@ -181,7 +182,7 @@ serial_init()
 	      perror("Could not get the name of the wire device.");
 	      exit(-1);
 	  }
-          if ((ttyp = open(tty_dev_name, O_RDWR | O_NDELAY, 0666)) >= 0)
+          if ((ttyp = open(tty_dev_name, O_CREAT | O_RDWR | O_NDELAY, 0666)) >= 0)
             {
               if (verbose)
                 printf("%s: wire connection on %s\n", progname,
@@ -199,7 +200,7 @@ serial_init()
                 {
                   sprintf(tty_dev_name, "/dev/pty%c%x", c, n);
                   if ((wire_fd = open(tty_dev_name,
-                                      O_RDWR | O_EXCL | O_NDELAY, 0666)) >= 0)
+                                      O_CREAT | O_RDWR | O_EXCL | O_NDELAY, 0666)) >= 0)
                     {
                       ttyp = wire_fd;
                       sprintf(tty_dev_name, "/dev/tty%c%x", c, n);
