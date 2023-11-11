@@ -169,13 +169,16 @@ public class X48 extends Activity {
                     getActionBar().hide();
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         mainView.setSystemUiVisibility(
-                            HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                            HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            );
                     }
                 } else { // FIXME:
                     getActionBar().show();
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         mainView.setSystemUiVisibility(
-                            HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                            HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                            HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                     }
                 }
             } else {        // >=19
@@ -183,10 +186,13 @@ public class X48 extends Activity {
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         if (mainView != null) {
                             mainView.setSystemUiVisibility(
-                                HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                                | HPView.SYSTEM_UI_FLAG_FULLSCREEN                                                                                                                                   // hide status bar
-                                | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                                // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
+                                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                            | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                                            | HPView.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                                            | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                                    // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
                             );
                         }
                     }
@@ -195,7 +201,10 @@ public class X48 extends Activity {
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         if (mainView != null) {
                             mainView.setSystemUiVisibility(
-                                HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            );
                         }
                     }
                     getActionBar().show();
@@ -218,10 +227,13 @@ public class X48 extends Activity {
         if (Build.VERSION.SDK_INT >= 19) {
             if (mainView != null) {
                 mainView.setSystemUiVisibility(
-                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                    | HPView.SYSTEM_UI_FLAG_FULLSCREEN                                                                                                                                   // hide status bar
-                    | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    //| HPView.SYSTEM_UI_FLAG_IMMERSIVE
+                        HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                                | HPView.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                                | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        //| HPView.SYSTEM_UI_FLAG_IMMERSIVE
                 );
                 getActionBar().hide();
             }
@@ -241,7 +253,8 @@ public class X48 extends Activity {
         if (Build.VERSION.SDK_INT >= 19) {
             if (mainView != null) {
                 mainView.setSystemUiVisibility(
-                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                        HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                );
                 getActionBar().hide();
             }
         } else {
@@ -402,11 +415,11 @@ public class X48 extends Activity {
         }
 
         /*
-                item = menu.add(0, LOADOBJECT_ID, 0, R.string.load_object);
-                item.setIcon(R.drawable.ic_action_load_object);
-                if (Build.VERSION.SDK_INT >= 11) {
-                    item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-                }
+        item = menu.add(0, LOADOBJECT_ID, 0, R.string.load_object);
+        item.setIcon(R.drawable.ic_action_load_object);
+        if (Build.VERSION.SDK_INT >= 11) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
         */
 
         item = menu.add(0, SAVE_ZIP_ID, 0, R.string.save_zip);
@@ -422,20 +435,21 @@ public class X48 extends Activity {
         }
 
         /*
-                // Hp gave the HP48 ROM in 2000, but I don't know if they also gave the manuals...
+        // Hp gave the HP48 ROM in 2000, but I don't know if they also gave the manuals...
 
-                item = menu.add(0, MANUAL_VOL1_ID, 0, R.string.manual_vol1);
-                item.setIcon(R.drawable.ic_action_info);
-                if (Build.VERSION.SDK_INT >= 11) {
-                    item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-                }
+        item = menu.add(0, MANUAL_VOL1_ID, 0, R.string.manual_vol1);
+        item.setIcon(R.drawable.ic_action_info);
+        if (Build.VERSION.SDK_INT >= 11) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
 
-                item = menu.add(0, MANUAL_VOL2_ID, 0, R.string.manual_vol2);
-                item.setIcon(R.drawable.ic_action_info);
-                if (Build.VERSION.SDK_INT >= 11) {
-                    item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-                }
+        item = menu.add(0, MANUAL_VOL2_ID, 0, R.string.manual_vol2);
+        item.setIcon(R.drawable.ic_action_info);
+        if (Build.VERSION.SDK_INT >= 11) {
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
         */
+
         item = menu.add(0, QUIT_ID, 0, R.string.button_quit);
         item.setIcon(R.drawable.ic_action_power);
         if (Build.VERSION.SDK_INT >= 11) {
