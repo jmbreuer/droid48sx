@@ -171,14 +171,15 @@ public class X48 extends Activity {
                         mainView.setSystemUiVisibility(
                             HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                             HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            );
+                        );
                     }
                 } else { // FIXME:
                     getActionBar().show();
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         mainView.setSystemUiVisibility(
                             HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                            HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                            HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        );
                     }
                 }
             } else {        // >=19
@@ -186,13 +187,13 @@ public class X48 extends Activity {
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         if (mainView != null) {
                             mainView.setSystemUiVisibility(
-                                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                                            | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                                            | HPView.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                                            | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                                    // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
+                                HPView.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
+                                HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                                // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
                             );
                         }
                     }
@@ -201,9 +202,9 @@ public class X48 extends Activity {
                     if (mPrefs.getBoolean("fullScreen", false)) {
                         if (mainView != null) {
                             mainView.setSystemUiVisibility(
-                                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                            | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                                HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             );
                         }
                     }
@@ -227,13 +228,13 @@ public class X48 extends Activity {
         if (Build.VERSION.SDK_INT >= 19) {
             if (mainView != null) {
                 mainView.setSystemUiVisibility(
-                        HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                | HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                | HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                                | HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                                | HPView.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                                | HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        //| HPView.SYSTEM_UI_FLAG_IMMERSIVE
+                    HPView.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                    HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                    HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
+                    HPView.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
+                    HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
                 );
                 getActionBar().hide();
             }
