@@ -2,6 +2,7 @@ package org.czo.droid48sx;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,7 +65,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
         setFocusable(true);
         setFocusableInTouchMode(true);
         x48 = ((X48)context);
-        multiTouch = Wrapper.supportsMultitouch(x48);
+        multiTouch = x48.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH);
         mSurfaceHolder = getHolder();
         mSurfaceHolder.addCallback(this);
         mainScreen = Bitmap.createBitmap(262, 14 + 128, Bitmap.Config.RGB_565);
@@ -547,9 +548,9 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
                 if (actionCode == MotionEvent.ACTION_DOWN || actionCode == MotionEvent.ACTION_UP ||
                     actionCode == MotionEvent.ACTION_POINTER_DOWN || actionCode == MotionEvent.ACTION_POINTER_UP) {
                     pointerID = (action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                    x = Wrapper.MotionEvent_getX(event, pointerID);
-                    y = Wrapper.MotionEvent_getY(event, pointerID);
-                    pointerID = Wrapper.MotionEvent_getPointerId(event, pointerID) + 1;
+                    x = event.getX(pointerID);
+                    y = event.getY(pointerID);
+                    pointerID = event.getPointerId(pointerID) + 1;
                 } else {
                     return false;
                 }
