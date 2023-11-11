@@ -191,7 +191,7 @@ public class X48 extends Activity {
                                 HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                                 HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                                 HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
-                                HPView.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
+                                HPView.SYSTEM_UI_FLAG_FULLSCREEN |      // hide status bar
                                 HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                                 // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
                             );
@@ -232,7 +232,7 @@ public class X48 extends Activity {
                     HPView.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                     HPView.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                     HPView.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
-                    HPView.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
+                    HPView.SYSTEM_UI_FLAG_FULLSCREEN |      // hide status bar
                     HPView.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     // | HPView.SYSTEM_UI_FLAG_IMMERSIVE
                 );
