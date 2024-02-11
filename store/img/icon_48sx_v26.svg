@@ -7,7 +7,7 @@
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="icon_48sx_v26.svg"
-   inkscape:export-filename="/tank/data/czo/AndroidStudioProjects/droid48sx/store/img/icon_48sx.png"
+   inkscape:export-filename="icon_48sx_v26.png"
    inkscape:export-xdpi="96.000008"
    inkscape:export-ydpi="96.000008"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -25,7 +25,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,8 +39,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1137555"
-     inkscape:cx="253.64634"
-     inkscape:cy="254.5442"
+     inkscape:cx="254.99313"
+     inkscape:cy="283.27582"
      inkscape:window-width="1440"
      inkscape:window-height="831"
      inkscape:window-x="0"
@@ -86,6 +85,15 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:#3c3835;fill-opacity:1;stroke-width:1.08664"
+       id="rect2039"
+       width="135.46666"
+       height="135.46666"
+       x="-4.4408921e-16"
+       y="0"
+       rx="0"
+       ry="0" />
     <g
        id="g17097">
       <path
