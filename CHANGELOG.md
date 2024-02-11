@@ -8,7 +8,7 @@
     must be located in the Download folder, and its extension must be ".png" for
     "Load object on stack" and "Restore checkpoint ZIP" to work.
 
-* 26 Aug 2023 (Version 2.42.28217746)
+* 26 Aug 2023 (Version 13.0)
   - Bug fixes and performance improvements
   - Intended to work from Android 4.4 to 13 on armeabi-v7a, arm64-v8a, x86 and x86_64
     architectures
