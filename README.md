@@ -1,6 +1,6 @@
 ## 48sx : The HP48 sx emulator !
 
-HP48sx is a vintage RPN calculator. I used this calc 25 years ago ;-) I love this calc....and
+HP48sx is a vintage RPN calculator. I used this calc 30 years ago ;-) I love this calc....and
 now I can have it in my pocket every day !
 
 ![ScreenShot](store/play/2.42/48sx_small.jpg)
