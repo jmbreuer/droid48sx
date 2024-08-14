@@ -14,38 +14,36 @@ def keystoreProperties = new Properties()
 def canSign = false
 if (keystorePropertiesFile.exists()) {
     canSign = true
-    println("-> release will be signed")
+    println("-> release will be signed.")
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 int minutesSinceEpoch = System.currentTimeMillis() / 1000 / 60
-println("-> minutesSinceEpoch: " + minutesSinceEpoch)
+println("-> minuteSinceEpoch: " + minutesSinceEpoch)
 String buildDateYMD = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date(System.currentTimeMillis()))
-println("-> buildDateYMD:      " + buildDateYMD)
+println("-> buildDateYMD:     " + buildDateYMD)
 String buildDateYHM = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(new java.util.Date(System.currentTimeMillis()))
-println("-> buildDateYHM:      " + buildDateYHM)
+println("-> buildDateYHM:     " + buildDateYHM)
 def gitVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
-println("-> gitVersionName:    " + gitVersionName)
-//defined in buildtypes
 def buildDateTxt
 
 android {
     namespace 'org.czo.droid48sx'
-    compileSdk 33
+    compileSdk 34
     //ndkVersion '25.1.8937393'
     defaultConfig {
 
         applicationId "org.czo.droid48sx"
-        minSdkVersion 19
-        targetSdkVersion 33
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode minutesSinceEpoch
 
+        println("-> gitVersionName:   " + gitVersionName)
         setProperty("versionName", "${gitVersionName}".replaceAll(/-.*/,''))
-        println("-> versionName:       " + versionName)
-        println("")
-
+        println("-> versionName:      " + versionName)
+        println("-> versionCode:      " + minutesSinceEpoch)
         setProperty("archivesBaseName", "${applicationId}-${buildDateYMD}")
-        println("-> archivesBaseName:  " + archivesBaseName)
+        println("-> archivesBaseName: " + archivesBaseName)
         println("")
     }
 
