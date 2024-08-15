@@ -1,12 +1,20 @@
 ## 48sx CHANGELOG
 
+* 15 Aug 2024 (Version 14.1.28728418)
+  - Bug fixes and performance improvements
+  - Intended to work from Android 5 to 14 on armeabi-v7a, arm64-v8a, x86 and x86_64
+    architectures
+  - In recent versions of Android, you must grant the 'Photos and Videos' permission
+    for 'Load object on stack' and 'Save/Restore checkpoint ZIP' to function properly. 
+    The file must be located in the Download folder and have a '.png' extension.
+
 * 11 Feb 2024 (Version 13.1.28459983)
   - Bug fixes and performance improvements
   - Intended to work from Android 4.4 to 13 on armeabi-v7a, arm64-v8a, x86 and x86_64
     architectures
-  - On Android 13 (API 33), you must allow "Photos and videos permission". The file
-    must be located in the Download folder, and its extension must be ".png" for
-    "Load object on stack" and "Restore checkpoint ZIP" to work.
+  - On Android 13 (API 33), you must grant the 'Photos and Videos' permission
+    for 'Load object on stack' and 'Save/Restore checkpoint ZIP' to function properly. 
+    The file must be located in the Download folder and have a '.png' extension.
 
 * 26 Aug 2023 (Version 2.42.28217746)
   - Bug fixes and performance improvements
