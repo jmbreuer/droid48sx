@@ -542,8 +542,8 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
     @Override
     protected void onCreateContextMenu(ContextMenu menu) {
         super.onCreateContextMenu(menu);
-        menu.add(Menu.NONE, X48.CM_COPY_ID, 0, "Copy");
-        menu.add(Menu.NONE, X48.CM_PASTE_ID, 1, "Paste");
+        menu.add(X48.CONTEXT_MENU_ID, X48.CM_COPY_ID, 0, "Copy");
+        menu.add(X48.CONTEXT_MENU_ID, X48.CM_PASTE_ID, 1, "Paste");
     }
 
     final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {

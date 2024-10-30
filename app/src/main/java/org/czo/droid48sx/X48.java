@@ -61,8 +61,10 @@ public class X48 extends Activity {
     static final private int MANUAL_VOL2_ID = Menu.FIRST + 13;
     static final private int LOADOBJECT_ID = Menu.FIRST + 14;
 
-    static final int CM_COPY_ID = ContextMenu.FIRST + 0;
-    static final int CM_PASTE_ID = ContextMenu.FIRST + 1;
+    static final int CONTEXT_MENU_ID = ContextMenu.FIRST + 42;
+
+    static final int CM_COPY_ID = ContextMenu.FIRST + 1;
+    static final int CM_PASTE_ID = ContextMenu.FIRST + 2;
 
     static final private int ROM_ID = 123;
     private static EmulatorThread thread;
@@ -232,6 +234,9 @@ public class X48 extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        if (item.getGroupId() != CONTEXT_MENU_ID)
+            return super.onContextItemSelected(item);
+
         int itemId = item.getItemId();
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (itemId == CM_COPY_ID) {
@@ -1012,6 +1017,8 @@ public class X48 extends Activity {
      */
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if (item.getGroupId() != Menu.NONE)
+            return super.onMenuItemSelected(featureId, item);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Editor spe = mPrefs.edit();
