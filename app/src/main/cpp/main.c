@@ -381,6 +381,22 @@ Java_org_czo_droid48sx_X48_buttonReleased( JNIEnv*  env,
 
 }
 
+jstring
+Java_org_czo_droid48sx_X48_getStackValue( JNIEnv* env,
+                   jobject this,
+                   jint index) {
+    char result[80];
+    get_stack_value(index, result);
+    return (*env)->NewStringUTF(env, result);
+}
+
+void
+Java_org_czo_droid48sx_X48_pasteValue( JNIEnv* env,
+        jobject this,
+        jdouble value) {
+    paste_value((double)value);
+}
+
 jint
 Java_org_czo_droid48sx_X48_loadProg( JNIEnv*  env,
                                       jobject  this,
