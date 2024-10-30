@@ -559,17 +559,6 @@ int keypressed;
     return decode_rpl_obj(se, buf);
 }
 
-void
-#ifdef __FunctionProto__
-paste_value(double value)
-#else
-key_event(b, keypressed)
-int b;
-int keypressed;
-#endif
-{
-    // whatever - simulate keypresses...?
-}
 
 /* TODO */
 

@@ -390,13 +390,6 @@ Java_org_czo_droid48sx_X48_getStackValue( JNIEnv* env,
     return (*env)->NewStringUTF(env, result);
 }
 
-void
-Java_org_czo_droid48sx_X48_pasteValue( JNIEnv* env,
-        jobject this,
-        jdouble value) {
-    paste_value((double)value);
-}
-
 jint
 Java_org_czo_droid48sx_X48_loadProg( JNIEnv*  env,
                                       jobject  this,
