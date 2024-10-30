@@ -298,25 +298,6 @@ public class X48 extends Activity {
             if (didInject)
                 injectKey(24); // ENTER
 
-            /*
-            try {
-                mainView.key(35, true);
-                Thread.sleep(20);
-                mainView.key(35, false);
-                Thread.sleep(50);
-                mainView.key(41, true);
-                Thread.sleep(20);
-                mainView.key(41, false);
-                Thread.sleep(50);
-                mainView.key(24, true);
-                Thread.sleep(20);
-                mainView.key(24, false);
-            } catch (InterruptedException ie) {
-                // nothing sensible to do
-            }
-            */
-
-            // pasteValue(Double.parseDouble(String.valueOf(clip.getText())));
         }
         return super.onContextItemSelected(item);
     }
@@ -462,7 +443,6 @@ public class X48 extends Activity {
 
     public native String getStackValue(int index);
 
-    public native void pasteValue(double value);
 
     public void emulatorReady() {
         mainView.emulatorReady();
