@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 // Filename: build.gradle
 // Author: Olivier Sirol <czo@free.fr>
 // License: GPL-2.0 (http://www.gnu.org/copyleft)
@@ -13,29 +15,30 @@ def keystorePropertiesFile = rootProject.file("local.properties")
 def keystoreProperties = new Properties()
 def canSign = false
 if (keystorePropertiesFile.exists()) {
-    canSign = true
-    println("-> release will be signed.")
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    canSign = keystoreProperties["canSign"]
+    if (canSign)
+        println("-> release will be signed.")
 }
 
 int minutesSinceEpoch = System.currentTimeMillis() / 1000 / 60
 println("-> minuteSinceEpoch: " + minutesSinceEpoch)
-String buildDateYMD = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date(System.currentTimeMillis()))
+String buildDateYMD = new SimpleDateFormat("yyyyMMdd").format(new Date(System.currentTimeMillis()))
 println("-> buildDateYMD:     " + buildDateYMD)
-String buildDateYHM = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(new java.util.Date(System.currentTimeMillis()))
+String buildDateYHM = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(System.currentTimeMillis()))
 println("-> buildDateYHM:     " + buildDateYHM)
 def gitVersionName = "git -C ${rootDir} describe --tags --long".execute().text.trim()
 def buildDateTxt
 
 android {
     namespace 'org.czo.droid48sx'
-    compileSdk 34
+    compileSdk 35
     //ndkVersion '25.1.8937393'
     defaultConfig {
 
         applicationId "org.czo.droid48sx"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdk 35
         versionCode minutesSinceEpoch
 
         println("-> gitVersionName:   " + gitVersionName)
