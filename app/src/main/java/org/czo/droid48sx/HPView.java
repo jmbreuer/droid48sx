@@ -665,7 +665,15 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
         key(code, down, 255); // Use pointerID 255 for keyboard
     }
 
-    public synchronized void key(int code, boolean down, int pointerID) {
+    public void key(int code, boolean down, boolean inhibitFeedback) {
+        key(code, down, 255, inhibitFeedback);
+    }
+
+    public void key(int code, boolean down, int pointerID) {
+        key(code, down, pointerID, false);
+    }
+
+    public synchronized void key(int code, boolean down, int pointerID, boolean inhibitFeedback) {
 
         if (code < MAX_TOUCHES) {
             if (down) {
@@ -683,7 +691,8 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
                 if (!queuedCodes.contains(cI)) {
                     queuedCodes.add(cI);
                     touches[code] = pointerID;
-                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
+                    if (!inhibitFeedback)
+                        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } else {
                     Dlog.d("rejected down");
                 }
