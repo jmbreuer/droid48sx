@@ -54,7 +54,7 @@ public class Settings extends PreferenceActivity {
         largeLCDPref.setKey("large_width");
         largeLCDPref.setTitle(R.string.large_width);
         largeLCDPref.setSummary(R.string.large_width_summary);
-        largeLCDPref.setDefaultValue(false);
+        largeLCDPref.setDefaultValue(true);
         inlineDispPrefCat.addPreference(largeLCDPref);
 
         PreferenceCategory portPrefCat = new PreferenceCategory(this);

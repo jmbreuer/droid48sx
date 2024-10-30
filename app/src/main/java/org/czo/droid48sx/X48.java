@@ -289,7 +289,7 @@ public class X48 extends Activity {
             mainView.setHapticFeedbackEnabled(mPrefs.getBoolean("haptic", true));
             mainView.setSound(mPrefs.getBoolean("sound", false));
             // large_width is indeed !lcd_int
-            mainView.setFullWidth(mPrefs.getBoolean("large_width", false));
+            mainView.setFullWidth(mPrefs.getBoolean("large_width", true));
             mainView.setScaleControls(mPrefs.getBoolean("scale_buttons", true));
         }
     }
