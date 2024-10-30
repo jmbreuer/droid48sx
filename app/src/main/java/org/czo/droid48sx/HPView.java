@@ -18,8 +18,11 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
+import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -64,6 +67,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
         super(context, attrs);
         setFocusable(true);
         setFocusableInTouchMode(true);
+        setContextClickable(true);
         x48 = ((X48)context);
         multiTouch = x48.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH);
         mSurfaceHolder = getHolder();
@@ -536,6 +540,31 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
     }
 
     @Override
+    protected void onCreateContextMenu(ContextMenu menu) {
+        super.onCreateContextMenu(menu);
+        menu.add(Menu.NONE, X48.CM_COPY_ID, 0, "Copy");
+        menu.add(Menu.NONE, X48.CM_PASTE_ID, 1, "Paste");
+    }
+
+    final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            showContextMenu();
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            x48.Menu();
+            return super.onSingleTapUp(e);
+        }
+    });
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         synchronized (mSurfaceHolder) {
             float x, y;
@@ -570,12 +599,14 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
                             code = i;
                     }
                 }
-                if (code == -1 && actionCode == MotionEvent.ACTION_DOWN) {
-                    /* 2013/10/05 : Modified by Olivier Sirol <czo@free.fr> */
+                /*
+                if (code == -1 && actionCode == MotionEvent.ACTION_UP) {
+                    // 2013/10/05 : Modified by Olivier Sirol <czo@free.fr>
                     x48.Menu();
                     // ((X48) getContext()).changeKeybLite();
                     return false;
                 }
+                */
 
                 if (code > -1) {
                     key(code, actionCode == MotionEvent.ACTION_DOWN || actionCode == MotionEvent.ACTION_POINTER_DOWN, pointerID);
@@ -607,7 +638,7 @@ public class HPView extends SurfaceView implements SurfaceHolder.Callback, Runna
                 }
             }
         }
-        return false;
+        return gestureDetector.onTouchEvent(event);
     }
 
     private boolean keybLite = false;

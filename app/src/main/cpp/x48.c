@@ -95,6 +95,8 @@
 #include "small.h"
 /* #include "buttons.h" */
 
+#include "rpl.h"
+
 #include "hp48.h"
 #include "device.h"
 #include "constants.h"
@@ -530,6 +532,44 @@ int keypressed;
   return 0;
 }
 
+char*
+#ifdef __FunctionProto__
+get_stack_value(int index, char* buf)
+#else
+key_event(b, keypressed)
+int b;
+int keypressed;
+#endif
+{
+    // return saturn.
+    // decode_rpl_obj something something
+
+    /*
+    struct {
+        int        se_n;
+        word_20    se_p;
+        struct se *se_next;
+    } se;
+    */
+
+    word_20 sp;
+    load_addr(&sp, DSKTOP, 5);
+    word_20 se;
+    load_addr(&se, sp, 5);
+    return decode_rpl_obj(se, buf);
+}
+
+void
+#ifdef __FunctionProto__
+paste_value(double value)
+#else
+key_event(b, keypressed)
+int b;
+int keypressed;
+#endif
+{
+    // whatever - simulate keypresses...?
+}
 
 /* TODO */
 

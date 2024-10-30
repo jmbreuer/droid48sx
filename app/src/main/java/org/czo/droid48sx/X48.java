@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -32,6 +35,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -56,6 +60,9 @@ public class X48 extends Activity {
     static final private int MANUAL_VOL1_ID = Menu.FIRST + 12;
     static final private int MANUAL_VOL2_ID = Menu.FIRST + 13;
     static final private int LOADOBJECT_ID = Menu.FIRST + 14;
+
+    static final int CM_COPY_ID = ContextMenu.FIRST + 0;
+    static final int CM_PASTE_ID = ContextMenu.FIRST + 1;
 
     static final private int ROM_ID = 123;
     private static EmulatorThread thread;
@@ -214,6 +221,24 @@ public class X48 extends Activity {
         }
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (itemId == CM_COPY_ID) {
+            String rawValue = getStackValue(0);
+            String[] decoratedValue = rawValue.split(" +");
+            if (decoratedValue[0].matches("Real")) { // add other sensibles
+                ClipData clip = ClipData.newPlainText("value", decoratedValue[1]);
+                clipboard.setPrimaryClip(clip);
+            }
+        } else if (itemId == CM_PASTE_ID) {
+            ClipData.Item clip = clipboard.getPrimaryClip().getItemAt(0);
+            pasteValue(Double.parseDouble(String.valueOf(clip.getText())));
+        }
+        return super.onContextItemSelected(item);
+    }
+
     // This snippet hides the system bars.
     public void hideSystemUI() {
         hide = true;
@@ -352,6 +377,10 @@ public class X48 extends Activity {
     public native void getExternalPath(String path);
 
     public native void setBlankColor(short s);
+
+    public native String getStackValue(int index);
+
+    public native void pasteValue(double value);
 
     public void emulatorReady() {
         mainView.emulatorReady();
