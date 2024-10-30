@@ -221,6 +221,15 @@ public class X48 extends Activity {
         }
     }
 
+    private void injectKey(int keyCode) {
+        try {
+            mainView.key(keyCode, true, true);
+            Thread.sleep(10);
+            mainView.key(keyCode, false, true);
+            Thread.sleep(20);
+        } catch (InterruptedException ie) {} // nothing to be done
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -234,7 +243,75 @@ public class X48 extends Activity {
             }
         } else if (itemId == CM_PASTE_ID) {
             ClipData.Item clip = clipboard.getPrimaryClip().getItemAt(0);
-            pasteValue(Double.parseDouble(String.valueOf(clip.getText())));
+            String toPaste = String.valueOf(clip.getText());
+
+            boolean didInject = false;
+            for (int i = 0; i<toPaste.length(); i++) {
+                char c = toPaste.charAt(i);
+
+                boolean injectedKey = true;
+                switch (c) {
+                    case '0':
+                        injectKey(45);
+                        break;
+                    case '1':
+                        injectKey(40);
+                        break;
+                    case '2':
+                        injectKey(41);
+                        break;
+                    case '3':
+                        injectKey(42);
+                        break;
+                    case '4':
+                        injectKey(35);
+                        break;
+                    case '5':
+                        injectKey(36);
+                        break;
+                    case '6':
+                        injectKey(37);
+                        break;
+                    case '7':
+                        injectKey(30);
+                        break;
+                    case '8':
+                        injectKey(31);
+                        break;
+                    case '9':
+                        injectKey(32);
+                        break;
+                    case '.':
+                        injectKey(46);
+                        break;
+                    default:
+                        injectedKey = false;
+                        break;
+                }
+                didInject |= injectedKey;
+            }
+            if (didInject)
+                injectKey(24); // ENTER
+
+            /*
+            try {
+                mainView.key(35, true);
+                Thread.sleep(20);
+                mainView.key(35, false);
+                Thread.sleep(50);
+                mainView.key(41, true);
+                Thread.sleep(20);
+                mainView.key(41, false);
+                Thread.sleep(50);
+                mainView.key(24, true);
+                Thread.sleep(20);
+                mainView.key(24, false);
+            } catch (InterruptedException ie) {
+                // nothing sensible to do
+            }
+            */
+
+            // pasteValue(Double.parseDouble(String.valueOf(clip.getText())));
         }
         return super.onContextItemSelected(item);
     }
