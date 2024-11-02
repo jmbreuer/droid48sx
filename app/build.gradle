@@ -36,7 +36,7 @@ android {
     //ndkVersion '25.1.8937393'
     defaultConfig {
 
-        applicationId "org.czo.droid48sx"
+        applicationId "net.jmbreuer.droid48sx"
         minSdk 23
         targetSdk 35
         versionCode minutesSinceEpoch
