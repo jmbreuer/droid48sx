@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -32,6 +35,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -56,6 +60,11 @@ public class X48 extends Activity {
     static final private int MANUAL_VOL1_ID = Menu.FIRST + 12;
     static final private int MANUAL_VOL2_ID = Menu.FIRST + 13;
     static final private int LOADOBJECT_ID = Menu.FIRST + 14;
+
+    static final int CONTEXT_MENU_ID = ContextMenu.FIRST + 42;
+
+    static final int CM_COPY_ID = ContextMenu.FIRST + 1;
+    static final int CM_PASTE_ID = ContextMenu.FIRST + 2;
 
     static final private int ROM_ID = 123;
     private static EmulatorThread thread;
@@ -214,6 +223,85 @@ public class X48 extends Activity {
         }
     }
 
+    private void injectKey(int keyCode) {
+        try {
+            mainView.key(keyCode, true, true);
+            Thread.sleep(10);
+            mainView.key(keyCode, false, true);
+            Thread.sleep(20);
+        } catch (InterruptedException ie) {} // nothing to be done
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getGroupId() != CONTEXT_MENU_ID)
+            return super.onContextItemSelected(item);
+
+        int itemId = item.getItemId();
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (itemId == CM_COPY_ID) {
+            String rawValue = getStackValue(0);
+            String[] decoratedValue = rawValue.split(" +");
+            if (decoratedValue[0].matches("Real")) { // add other sensibles
+                ClipData clip = ClipData.newPlainText("value", decoratedValue[1]);
+                clipboard.setPrimaryClip(clip);
+            }
+        } else if (itemId == CM_PASTE_ID) {
+            ClipData.Item clip = clipboard.getPrimaryClip().getItemAt(0);
+            String toPaste = String.valueOf(clip.getText());
+
+            boolean didInject = false;
+            for (int i = 0; i<toPaste.length(); i++) {
+                char c = toPaste.charAt(i);
+
+                boolean injectedKey = true;
+                switch (c) {
+                    case '0':
+                        injectKey(45);
+                        break;
+                    case '1':
+                        injectKey(40);
+                        break;
+                    case '2':
+                        injectKey(41);
+                        break;
+                    case '3':
+                        injectKey(42);
+                        break;
+                    case '4':
+                        injectKey(35);
+                        break;
+                    case '5':
+                        injectKey(36);
+                        break;
+                    case '6':
+                        injectKey(37);
+                        break;
+                    case '7':
+                        injectKey(30);
+                        break;
+                    case '8':
+                        injectKey(31);
+                        break;
+                    case '9':
+                        injectKey(32);
+                        break;
+                    case '.':
+                        injectKey(46);
+                        break;
+                    default:
+                        injectedKey = false;
+                        break;
+                }
+                didInject |= injectedKey;
+            }
+            if (didInject)
+                injectKey(24); // ENTER
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
     // This snippet hides the system bars.
     public void hideSystemUI() {
         hide = true;
@@ -352,6 +440,9 @@ public class X48 extends Activity {
     public native void getExternalPath(String path);
 
     public native void setBlankColor(short s);
+
+    public native String getStackValue(int index);
+
 
     public void emulatorReady() {
         mainView.emulatorReady();
@@ -906,6 +997,8 @@ public class X48 extends Activity {
      */
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if (item.getGroupId() != Menu.NONE)
+            return super.onMenuItemSelected(featureId, item);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Editor spe = mPrefs.edit();

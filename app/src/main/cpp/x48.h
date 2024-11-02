@@ -182,4 +182,6 @@ extern void XClearWindow __ProtoType__((Display *dpy, Window win));
 extern int button_released __ProtoType__((int b));
 extern int button_pressed __ProtoType__((int b));
 
+extern char* get_stack_value __ProtoType__((int index, char* buf));
+
 #endif

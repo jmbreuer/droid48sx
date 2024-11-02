@@ -37,7 +37,7 @@ android {
     defaultConfig {
 
         applicationId "org.czo.droid48sx"
-        minSdkVersion 21
+        minSdk 23
         targetSdk 35
         versionCode minutesSinceEpoch
 
